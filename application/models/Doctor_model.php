@@ -147,7 +147,72 @@ class Doctor_model extends CI_model {
 
         return $data;
     }
-    
+
+    // PHIC
+    public function get_doctors_phic_expiring_soon() {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('phic_expiry_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 3 MONTH)', NULL, FALSE);
+        $query = $this->db->get();
+        $data['doctors'] = $query->result();
+
+        $this->db->select('COUNT(*) as total');
+        $this->db->from($this->table);
+        $this->db->where('phic_expiry_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 3 MONTH)', NULL, FALSE);
+        $query = $this->db->get();
+        $data['total'] = $query->row()->total;
+
+        return $data;
+    }
+
+    public function get_doctors_recently_expired_phic() {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('phic_expiry_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND CURDATE()', NULL, FALSE);
+        $query = $this->db->get();
+        $data['doctors'] = $query->result();
+
+        $this->db->select('COUNT(*) as total');
+        $this->db->from($this->table);
+        $this->db->where('phic_expiry_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND CURDATE()', NULL, FALSE);
+        $query = $this->db->get();
+        $data['total'] = $query->row()->total;
+
+        return $data;
+    }
+
+    //S2
+    public function get_doctors_s2_expiring_soon() {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('s2_license_validity BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 3 MONTH)', NULL, FALSE);
+        $query = $this->db->get();
+        $data['doctors'] = $query->result();
+
+        $this->db->select('COUNT(*) as total');
+        $this->db->from($this->table);
+        $this->db->where('s2_license_validity BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 3 MONTH)', NULL, FALSE);
+        $query = $this->db->get();
+        $data['total'] = $query->row()->total;
+
+         return $data;
+    }
+
+    public function get_doctors_recently_expired_s2() {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('s2_license_validity BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND CURDATE()', NULL, FALSE);
+        $query = $this->db->get();
+        $data['doctors'] = $query->result();
+
+        $this->db->select('COUNT(*) as total');
+        $this->db->from($this->table);
+        $this->db->where('s2_license_validity BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND CURDATE()', NULL, FALSE);
+        $query = $this->db->get();
+        $data['total'] = $query->row()->total;
+
+        return $data;
+    }
     
 
 

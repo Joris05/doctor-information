@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2024 at 06:38 AM
+-- Generation Time: May 28, 2024 at 06:59 AM
 -- Server version: 8.2.0
 -- PHP Version: 7.4.33
 
@@ -35,11 +35,22 @@ CREATE TABLE IF NOT EXISTS `tbl_doctors_info` (
   `middlename` varchar(25) NOT NULL,
   `birthdate` date NOT NULL,
   `gender` varchar(10) NOT NULL,
-  `prc_license_type` varchar(50) NOT NULL,
-  `prc_license_no` varchar(50) NOT NULL,
   `prc_expiry_date` date NOT NULL,
+  `prc_registration_date` date NOT NULL,
+  `phic_license_no` varchar(50) NOT NULL,
+  `phic_validity_period` date NOT NULL,
+  `phic_expiry_date` date NOT NULL,
+  `tin_no` varchar(50) NOT NULL,
+  `s2_license_no` varchar(50) NOT NULL,
+  `s2_registration_date` date NOT NULL,
+  `s2_license_validity` date NOT NULL,
   `residential_address` varchar(100) NOT NULL,
+  `specialty` varchar(50) NOT NULL,
+  `sub_specialty` varchar(50) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `join_date` date NOT NULL,
   `photo` varchar(255) NOT NULL,
+  `email_add` varchar(50) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`doc_id`),
   KEY `lastname` (`lastname`),
@@ -47,13 +58,23 @@ CREATE TABLE IF NOT EXISTS `tbl_doctors_info` (
   KEY `middlename` (`middlename`),
   KEY `birthdate` (`birthdate`),
   KEY `gender` (`gender`),
-  KEY `prc_license_type` (`prc_license_type`),
-  KEY `prc_license_no` (`prc_license_no`),
   KEY `prc_expiry_date` (`prc_expiry_date`),
   KEY `residential_address` (`residential_address`),
   KEY `date_added` (`date_added`),
-  KEY `photo` (`photo`(250))
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `photo` (`photo`(250)),
+  KEY `prc_registration_date` (`prc_registration_date`),
+  KEY `phic_license_no` (`phic_license_no`),
+  KEY `phic_validity_period` (`phic_validity_period`),
+  KEY `phic_expiry_date` (`phic_expiry_date`),
+  KEY `tin_no` (`tin_no`),
+  KEY `s2_license_no` (`s2_license_no`),
+  KEY `s2_registration_date` (`s2_registration_date`),
+  KEY `specialty` (`specialty`),
+  KEY `sub_specialty` (`sub_specialty`),
+  KEY `category` (`category`),
+  KEY `join_date` (`join_date`),
+  KEY `email_add` (`email_add`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -69,21 +90,7 @@ CREATE TABLE IF NOT EXISTS `tbl_doctor_contactno` (
   PRIMARY KEY (`doc_contact_id`),
   KEY `doc_contact_id` (`doc_contact_id`),
   KEY `doctor_id` (`doctor_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `tbl_doctor_contactno`
---
-
-INSERT INTO `tbl_doctor_contactno` (`doc_contact_id`, `doctor_id`, `mobile_no`) VALUES
-(10, 1, '09916785093'),
-(9, 1, '09058152278'),
-(4, 2, '09123456789'),
-(5, 2, '09058152278'),
-(11, 3, '23123213123'),
-(12, 4, '12345678901'),
-(13, 5, '12345678901'),
-(14, 6, '09058152278');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 

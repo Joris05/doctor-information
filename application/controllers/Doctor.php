@@ -69,8 +69,8 @@ class Doctor extends CI_Controller
                                         <div class="avatar me-2"><img class="avatar-img img-fluid" src="'.$photo.'"></div>
                                         '.$doctor->lastname .', ' .$doctor->firstname . ' ' . $doctor->middlename.'
                                     </div>',
-                'PRC License Type' => $doctor->prc_license_type,
-                'PRC License No' => $doctor->prc_license_no,
+                'PHIC Expiry Date' => $doctor->phic_expiry_date,
+                'S2 Validity Date' => $doctor->s2_license_validity,
                 'PRC Expiry Date' => $doctor->prc_expiry_date,
                 'Action' => '
                     <a class="btn btn-datatable btn-icon me-2" href="'.base_url().'doctor/edit/'.$doctor->doc_id.'" title="edit">
@@ -95,10 +95,23 @@ class Doctor extends CI_Controller
         $this->form_validation->set_rules('firstname', 'First Name', 'required|trim');
         $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim');
         $this->form_validation->set_rules('birthday', 'Birth Day', 'required|trim');
-        $this->form_validation->set_rules('prc_type', 'PRC License Type', 'required|trim');
-        $this->form_validation->set_rules('prc_no', 'PRC License No', 'required|trim');
+        // $this->form_validation->set_rules('prc_type', 'PRC License Type', 'required|trim');
+        // $this->form_validation->set_rules('prc_no', 'PRC License No', 'required|trim');
         $this->form_validation->set_rules('prc_expiry_date', 'PRC Expiry Date', 'required|trim');
         $this->form_validation->set_rules('address', 'Residential Address', 'required|trim');
+        $this->form_validation->set_rules('specialty', 'Specialty', 'required|trim');
+        $this->form_validation->set_rules('sub_specialty', 'Sub-Specialty', 'required|trim');
+        $this->form_validation->set_rules('category', 'Category', 'required|trim');
+        $this->form_validation->set_rules('join_date', 'Join Date', 'required|trim');
+        $this->form_validation->set_rules('phic_license_no', 'PHIC License No', 'required|trim');
+        $this->form_validation->set_rules('phic_validity_period', 'Validity Period', 'required|trim');
+        $this->form_validation->set_rules('phic_expiry_date', 'Expiry Date', 'required|trim');
+        $this->form_validation->set_rules('prc_reg_date', 'PRC Registration Date', 'required|trim');
+        $this->form_validation->set_rules('tin_no', 'TIN #', 'required|trim');
+        $this->form_validation->set_rules('email_add', 'Email Address', 'required|trim');
+        $this->form_validation->set_rules('s2_license_no', 'S2 License No', 'required|trim');
+        $this->form_validation->set_rules('s2_registration_date', 'S2 Registration Date', 'required|trim');
+        $this->form_validation->set_rules('s2_license_validity', 'S2 Validity Date', 'required|trim');
         if ( $this->form_validation->run() == FALSE ) {
             $errors = validation_errors('<li>', '</li>');
             echo json_encode([
@@ -112,13 +125,26 @@ class Doctor extends CI_Controller
             $mname = $this->input->post('middlename');
             $birthday = $this->input->post('birthday');
             $prc_type = $this->input->post('prc_type');
-            $prc_no = $this->input->post('prc_no');
+            // $prc_no = $this->input->post('prc_no');
             $prcexpiry = $this->input->post('prc_expiry_date');
             $address = $this->input->post('address');
             $contact_numbers = $this->input->post('contact_no');
+            $specialty = $this->input->post('specialty');
+            $sub_specialty = $this->input->post('sub_specialty');
+            $category = $this->input->post('category');
+            $join_date = $this->input->post('join_date');
+            $phic_license_no = $this->input->post('phic_license_no');
+            $phic_validity_period = $this->input->post('phic_validity_period');
+            $phic_expiry_date = $this->input->post('phic_expiry_date');
+            $prc_reg_date = $this->input->post('prc_reg_date');
+            $tin_no = $this->input->post('tin_no');
+            $email_add = $this->input->post('email_add');
+            $s2_license_no = $this->input->post('s2_license_no');
+            $s2_registration_date = $this->input->post('s2_registration_date');
+            $s2_license_validity = $this->input->post('s2_license_validity');
 
             $checkDocName = $this->doctor->get_doctor_name($lname, $fname, $mname);
-            $checkPRCNo = $this->doctor->get_prc_no($prc_no);
+            // $checkPRCNo = $this->doctor->get_prc_no($prc_no);
 
             $filepath = (!empty($_FILES['doctor_photo']['name'])) ?
                         sprintf('assets/doctors/%s_%s', uniqid(), $_FILES['doctor_photo']['name']) :
@@ -130,23 +156,34 @@ class Doctor extends CI_Controller
                     'response'	=> "error",
                     'response_message' => "Doctor name is already exist."
                 ]);
-            } else if ($checkPRCNo) {
-                echo json_encode([
-                    'status' => 401,
-                    'response'	=> "error",
-                    'response_message' => "PRC License No is already exist."
-                ]);
+            // } else if ($checkPRCNo) {
+            //     echo json_encode([
+            //         'status' => 401,
+            //         'response'	=> "error",
+            //         'response_message' => "PRC License No is already exist."
+            //     ]);
             } else {
                 $datas = [
                     'lastname' => ucwords($lname),
                     'firstname' => ucwords($fname),
                     'middlename' => ucwords($mname),
                     'birthdate' => date('Y-m-d', strtotime($birthday)),
-                    'prc_license_type' => $prc_type,
-                    'prc_license_no' => $prc_no,
+                    'prc_registration_date' => $prc_reg_date,
                     'prc_expiry_date' => date('Y-m-d', strtotime($prcexpiry)),
                     'residential_address' => $address,
-                    'photo' => $filepath
+                    'photo' => $filepath,
+                    'phic_license_no' => $phic_license_no,
+                    'phic_validity_period' => $phic_validity_period,
+                    'phic_expiry_date' =>  date('Y-m-d', strtotime($phic_expiry_date)),
+                    'tin_no' => $tin_no,
+                    's2_license_no' => $s2_license_no,
+                    's2_registration_date' => $s2_registration_date,
+                    's2_license_validity' => $s2_license_validity,
+                    'specialty' => $specialty,
+                    'sub_specialty' => $sub_specialty,
+                    'category' => $category,
+                    'join_date' => $join_date,
+                    'email_add' => $email_add,
                 ];
                 $insert  = $this->doctor->add_doctor($datas);
                 if ($insert) {
@@ -185,11 +222,23 @@ class Doctor extends CI_Controller
         $this->form_validation->set_rules('firstname', 'First Name', 'required|trim');
         $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim');
         $this->form_validation->set_rules('birthday', 'Birth Day', 'required|trim');
-        $this->form_validation->set_rules('prc_type', 'PRC License Type', 'required|trim');
-        $this->form_validation->set_rules('prc_no', 'PRC License No', 'required|trim');
+        // $this->form_validation->set_rules('prc_type', 'PRC License Type', 'required|trim');
+        // $this->form_validation->set_rules('prc_no', 'PRC License No', 'required|trim');
         $this->form_validation->set_rules('prc_expiry_date', 'PRC Expiry Date', 'required|trim');
         $this->form_validation->set_rules('address', 'Residential Address', 'required|trim');
-
+        $this->form_validation->set_rules('specialty', 'Specialty', 'required|trim');
+        $this->form_validation->set_rules('sub_specialty', 'Sub-Specialty', 'required|trim');
+        $this->form_validation->set_rules('category', 'Category', 'required|trim');
+        $this->form_validation->set_rules('join_date', 'Join Date', 'required|trim');
+        $this->form_validation->set_rules('phic_license_no', 'PHIC License No', 'required|trim');
+        $this->form_validation->set_rules('phic_validity_period', 'Validity Period', 'required|trim');
+        $this->form_validation->set_rules('phic_expiry_date', 'Expiry Date', 'required|trim');
+        $this->form_validation->set_rules('prc_reg_date', 'PRC Registration Date', 'required|trim');
+        $this->form_validation->set_rules('tin_no', 'TIN #', 'required|trim');
+        $this->form_validation->set_rules('email_add', 'Email Address', 'required|trim');
+        $this->form_validation->set_rules('s2_license_no', 'S2 License No', 'required|trim');
+        $this->form_validation->set_rules('s2_registration_date', 'S2 Registration Date', 'required|trim');
+        $this->form_validation->set_rules('s2_license_validity', 'S2 Validity Date', 'required|trim');
         if ( $this->form_validation->run() == FALSE ) {
             $errors = validation_errors('<li>', '</li>');
             echo json_encode([
@@ -204,13 +253,26 @@ class Doctor extends CI_Controller
             $mname = $this->input->post('middlename');
             $birthday = $this->input->post('birthday');
             $prc_type = $this->input->post('prc_type');
-            $prc_no = $this->input->post('prc_no');
+            // $prc_no = $this->input->post('prc_no');
             $prcexpiry = $this->input->post('prc_expiry_date');
             $address = $this->input->post('address');
             $contact_numbers = $this->input->post('contact_no');
+            $specialty = $this->input->post('specialty');
+            $sub_specialty = $this->input->post('sub_specialty');
+            $category = $this->input->post('category');
+            $join_date = $this->input->post('join_date');
+            $phic_license_no = $this->input->post('phic_license_no');
+            $phic_validity_period = $this->input->post('phic_validity_period');
+            $phic_expiry_date = $this->input->post('phic_expiry_date');
+            $prc_reg_date = $this->input->post('prc_reg_date');
+            $tin_no = $this->input->post('tin_no');
+            $email_add = $this->input->post('email_add');
+            $s2_license_no = $this->input->post('s2_license_no');
+            $s2_registration_date = $this->input->post('s2_registration_date');
+            $s2_license_validity = $this->input->post('s2_license_validity');
 
             $checkDocName = $this->doctor->get_doctor_name_other($docId, $lname, $fname, $mname);
-            $checkPRCNo = $this->doctor->get_prc_no_other($docId, $prc_no);
+            // $checkPRCNo = $this->doctor->get_prc_no_other($docId, $prc_no);
 
             if ($checkDocName) {
                 echo json_encode([
@@ -218,12 +280,12 @@ class Doctor extends CI_Controller
                     'response'	=> "error",
                     'response_message' => "Doctor name is already exist."
                 ]);
-            } else if ($checkPRCNo) {
-                echo json_encode([
-                    'status' => 401,
-                    'response'	=> "error",
-                    'response_message' => "PRC License No is already exist."
-                ]);
+            // } else if ($checkPRCNo) {
+            //     echo json_encode([
+            //         'status' => 401,
+            //         'response'	=> "error",
+            //         'response_message' => "PRC License No is already exist."
+            //     ]);
             } else {
 
                 $filepath = (!empty($_FILES['doctor_photo']['name'])) ?
@@ -235,12 +297,23 @@ class Doctor extends CI_Controller
                     'firstname' => ucwords($fname),
                     'middlename' => ucwords($mname),
                     'birthdate' => date('Y-m-d', strtotime($birthday)),
-                    'prc_license_type' => $prc_type,
-                    'prc_license_no' => $prc_no,
+                    'prc_registration_date' => $prc_reg_date,
                     'prc_expiry_date' => date('Y-m-d', strtotime($prcexpiry)),
                     'residential_address' => $address,
+                    'phic_license_no' => $phic_license_no,
+                    'phic_validity_period' => $phic_validity_period,
+                    'phic_expiry_date' =>  date('Y-m-d', strtotime($phic_expiry_date)),
+                    'tin_no' => $tin_no,
+                    's2_license_no' => $s2_license_no,
+                    's2_registration_date' => $s2_registration_date,
+                    's2_license_validity' => $s2_license_validity,
+                    'specialty' => $specialty,
+                    'sub_specialty' => $sub_specialty,
+                    'category' => $category,
+                    'join_date' => $join_date,
+                    'email_add' => $email_add,
                 ];
-
+                
                 if(!empty($filepath)){
                     $datas['photo'] = $filepath;
                 }

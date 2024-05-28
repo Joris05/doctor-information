@@ -20516,3 +20516,8 @@ color: #ff6666;
     font-size: 20px;
     margin-top: 20px;
 }
+
+.card-body.scrollable {
+    max-height: 300px;
+    overflow-y: auto;
+}

@@ -27,12 +27,12 @@
             <!-- Navbar Brand-->
             <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="<?= base_url()?>dashboard">Doctor Info System</a>
             <!-- Navbar Search Input-->
-            <form class="form-inline me-auto d-none d-lg-block me-3">
+            <!-- <form class="form-inline me-auto d-none d-lg-block me-3">
                 <div class="input-group input-group-joined input-group-solid">
                     <input class="form-control pe-0" type="search" placeholder="Search" aria-label="Search" />
                     <div class="input-group-text"><i data-feather="search"></i></div>
                 </div>
-            </form>
+            </form> -->
             <!-- Navbar Items-->
             <ul class="navbar-nav align-items-center ms-auto">
                 <!-- User Dropdown-->
@@ -46,10 +46,10 @@
                             </div>
                         </h6>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?= base_url() ?>account">
+                        <!-- <a class="dropdown-item" href="<?= base_url() ?>account">
                             <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                             Account
-                        </a>
+                        </a> -->
                         <a class="dropdown-item" href="<?= base_url() ?>logout">
                             <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                             Logout

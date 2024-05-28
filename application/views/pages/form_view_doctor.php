@@ -31,6 +31,50 @@
                         src="<?= (@$doctor->photo)?base_url().$doctor->photo:base_url().'assets/images/user-placeholder.svg';?>" alt="">
                 </div>
             </div>
+
+            <div class="card mt-4 mb-xl-0">
+                <div class="card-body">
+                    <div class="row gx-3 mb-3">
+                        <label class="small mb-1">Specialty</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="specialty"
+                            value="<?= @$doctor->specialty; ?>"
+                            autocomplete="off"
+                            readonly />
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <label class="small mb-1">Sub-Specialty</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="sub_specialty"
+                            value="<?= @$doctor->sub_specialty; ?>"
+                            autocomplete="off"
+                            readonly />
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <label class="small mb-1">Category</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="category"
+                            value="<?= @$doctor->category; ?>"
+                            autocomplete="off"
+                            readonly />
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <label class="small mb-1">Join Date</label>
+                        <input
+                            type="date"
+                            class="form-control"
+                            name="join_date"
+                            value="<?= @$doctor->join_date; ?>"
+                            readonly />
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-xl-8">
             <div class="card mb-4">
@@ -130,42 +174,6 @@
                             endif;
                             ?>
                         </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="inputFirstName">PRC License Type</label>
-                                <input
-                                    value="<?= @$doctor->prc_license_type; ?>"
-                                    class="form-control"
-                                    id="inputFirstName"
-                                    type="text"
-                                    name="prc_type"
-                                    placeholder="Enter PRC License Type"
-                                    autocomplete="off"
-                                    readonly />
-                            </div>
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="inputLastName">PRC License No</label>
-                                <input
-                                    value="<?= @$doctor->prc_license_no; ?>"
-                                    class="form-control"
-                                    id="inputLastName"
-                                    type="number"
-                                    name="prc_no"
-                                    placeholder="Enter PRC License No"
-                                    autocomplete="off"
-                                    readonly />
-                            </div>
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="inputLastName">PRC License Expir Date</label>
-                                <input
-                                    value="<?= @$doctor->prc_expiry_date; ?>"
-                                    class="form-control"
-                                    id="inputLastName"
-                                    type="date"
-                                    name="prc_expiry_date"
-                                    readonly />
-                            </div>
-                        </div>
                         <div class="mb-3">
                             <label class="small mb-1" for="inputEmailAddress">Residential Address</label>
                             <input
@@ -178,6 +186,118 @@
                                 autocomplete="off"
                                 readonly />
                         </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputLastName">PHIC License No</label>
+                                <input
+                                    value="<?= @$doctor->phic_license_no; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="text"
+                                    name="phic_license_no"
+                                    placeholder="Enter PHIC License No"
+                                    readonly />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputLastName">Validity Period</label>
+                                <input
+                                    value="<?= @$doctor->phic_validity_period; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="date"
+                                    name="phic_validity_period"
+                                    readonly />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputLastName">Expiry Date</label>
+                                <input
+                                    value="<?= @$doctor->phic_expiry_date; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="date"
+                                    name="phic_expiry_date"
+                                    readonly />
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLastName">PRC Registration Date</label>
+                                <input
+                                    value="<?= @$doctor->prc_registration_date; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="date"
+                                    name="prc_reg_date"
+                                    readonly />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLastName">TIN #</label>
+                                <input
+                                    value="<?= @$doctor->tin_no; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="text"
+                                    placeholder="Enter TIN #"
+                                    name="tin_no"
+                                    readonly />
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLastName">PRC Expiry Date</label>
+                                <input
+                                    value="<?= @$doctor->prc_expiry_date; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="date"
+                                    name="prc_expiry_date"
+                                    readonly />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLastName">Email Address</label>
+                                <input
+                                    value="<?= @$doctor->prc_expiry_date; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="email"
+                                    placeholder="Enter Email Address"
+                                    name="email_add"
+                                    readonly />
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputLastName">S2 License No</label>
+                                <input
+                                    value="<?= @$doctor->s2_license_no; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="text"
+                                    name="s2_license_no"
+                                    placeholder="Enter PHIC License No"
+                                    readonly />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputLastName">S2 Registration Date</label>
+                                <input
+                                    value="<?= @$doctor->s2_registration_date; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="date"
+                                    name="s2_registration_date"
+                                    readonly />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputLastName">S2 Validity Date</label>
+                                <input
+                                    value="<?= @$doctor->s2_license_validity; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="date"
+                                    name="s2_license_validity"
+                                    readonly />
+                            </div>
+                        </div>                        
                     </div>
                 </div>
     </div>
