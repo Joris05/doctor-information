@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 28, 2024 at 06:59 AM
+-- Generation Time: May 30, 2024 at 01:06 AM
 -- Server version: 8.2.0
 -- PHP Version: 7.4.33
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tbl_doctors_info` (
   `firstname` varchar(25) NOT NULL,
   `middlename` varchar(25) NOT NULL,
   `birthdate` date NOT NULL,
-  `gender` varchar(10) NOT NULL,
+  `prc_license_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `prc_expiry_date` date NOT NULL,
   `prc_registration_date` date NOT NULL,
   `phic_license_no` varchar(50) NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `tbl_doctors_info` (
   KEY `firstname` (`firstname`),
   KEY `middlename` (`middlename`),
   KEY `birthdate` (`birthdate`),
-  KEY `gender` (`gender`),
+  KEY `gender` (`prc_license_no`),
   KEY `prc_expiry_date` (`prc_expiry_date`),
   KEY `residential_address` (`residential_address`),
   KEY `date_added` (`date_added`),
@@ -90,7 +90,14 @@ CREATE TABLE IF NOT EXISTS `tbl_doctor_contactno` (
   PRIMARY KEY (`doc_contact_id`),
   KEY `doc_contact_id` (`doc_contact_id`),
   KEY `doctor_id` (`doctor_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_doctor_contactno`
+--
+
+INSERT INTO `tbl_doctor_contactno` (`doc_contact_id`, `doctor_id`, `mobile_no`) VALUES
+(1, 1, '09058152278');
 
 -- --------------------------------------------------------
 
