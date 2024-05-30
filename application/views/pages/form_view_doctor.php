@@ -220,7 +220,17 @@
                             </div>
                         </div>
                         <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputLastName">PRC License No</label>
+                                <input
+                                    value="<?= @$doctor->prc_license_no; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="text"
+                                    name="prc_no"
+                                    readonly />
+                            </div>
+                            <div class="col-md-4">
                                 <label class="small mb-1" for="inputLastName">PRC Registration Date</label>
                                 <input
                                     value="<?= @$doctor->prc_registration_date; ?>"
@@ -230,6 +240,18 @@
                                     name="prc_reg_date"
                                     readonly />
                             </div>
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputLastName">PRC Expiry Date</label>
+                                <input
+                                    value="<?= @$doctor->prc_expiry_date; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="date"
+                                    name="prc_expiry_date"
+                                    readonly />
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputLastName">TIN #</label>
                                 <input
@@ -239,18 +261,6 @@
                                     type="text"
                                     placeholder="Enter TIN #"
                                     name="tin_no"
-                                    readonly />
-                            </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputLastName">PRC Expiry Date</label>
-                                <input
-                                    value="<?= @$doctor->prc_expiry_date; ?>"
-                                    class="form-control"
-                                    id="inputLastName"
-                                    type="date"
-                                    name="prc_expiry_date"
                                     readonly />
                             </div>
                             <div class="col-md-6">

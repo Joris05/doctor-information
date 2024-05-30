@@ -96,7 +96,7 @@ class Doctor extends CI_Controller
         $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim');
         $this->form_validation->set_rules('birthday', 'Birth Day', 'required|trim');
         // $this->form_validation->set_rules('prc_type', 'PRC License Type', 'required|trim');
-        // $this->form_validation->set_rules('prc_no', 'PRC License No', 'required|trim');
+        $this->form_validation->set_rules('prc_no', 'PRC License No', 'required|trim');
         $this->form_validation->set_rules('prc_expiry_date', 'PRC Expiry Date', 'required|trim');
         $this->form_validation->set_rules('address', 'Residential Address', 'required|trim');
         $this->form_validation->set_rules('specialty', 'Specialty', 'required|trim');
@@ -124,8 +124,8 @@ class Doctor extends CI_Controller
             $fname = $this->input->post('firstname');
             $mname = $this->input->post('middlename');
             $birthday = $this->input->post('birthday');
-            $prc_type = $this->input->post('prc_type');
-            // $prc_no = $this->input->post('prc_no');
+            // $prc_type = $this->input->post('prc_type');
+            $prc_no = $this->input->post('prc_no');
             $prcexpiry = $this->input->post('prc_expiry_date');
             $address = $this->input->post('address');
             $contact_numbers = $this->input->post('contact_no');
@@ -168,6 +168,7 @@ class Doctor extends CI_Controller
                     'firstname' => ucwords($fname),
                     'middlename' => ucwords($mname),
                     'birthdate' => date('Y-m-d', strtotime($birthday)),
+                    'prc_license_no' => $prc_no,
                     'prc_registration_date' => $prc_reg_date,
                     'prc_expiry_date' => date('Y-m-d', strtotime($prcexpiry)),
                     'residential_address' => $address,
@@ -223,7 +224,7 @@ class Doctor extends CI_Controller
         $this->form_validation->set_rules('middlename', 'Middle Name', 'required|trim');
         $this->form_validation->set_rules('birthday', 'Birth Day', 'required|trim');
         // $this->form_validation->set_rules('prc_type', 'PRC License Type', 'required|trim');
-        // $this->form_validation->set_rules('prc_no', 'PRC License No', 'required|trim');
+        $this->form_validation->set_rules('prc_no', 'PRC License No', 'required|trim');
         $this->form_validation->set_rules('prc_expiry_date', 'PRC Expiry Date', 'required|trim');
         $this->form_validation->set_rules('address', 'Residential Address', 'required|trim');
         $this->form_validation->set_rules('specialty', 'Specialty', 'required|trim');
@@ -252,8 +253,8 @@ class Doctor extends CI_Controller
             $fname = $this->input->post('firstname');
             $mname = $this->input->post('middlename');
             $birthday = $this->input->post('birthday');
-            $prc_type = $this->input->post('prc_type');
-            // $prc_no = $this->input->post('prc_no');
+            // $prc_type = $this->input->post('prc_type');
+            $prc_no = $this->input->post('prc_no');
             $prcexpiry = $this->input->post('prc_expiry_date');
             $address = $this->input->post('address');
             $contact_numbers = $this->input->post('contact_no');
@@ -297,6 +298,7 @@ class Doctor extends CI_Controller
                     'firstname' => ucwords($fname),
                     'middlename' => ucwords($mname),
                     'birthdate' => date('Y-m-d', strtotime($birthday)),
+                    'prc_license_no' => $prc_no,
                     'prc_registration_date' => $prc_reg_date,
                     'prc_expiry_date' => date('Y-m-d', strtotime($prcexpiry)),
                     'residential_address' => $address,

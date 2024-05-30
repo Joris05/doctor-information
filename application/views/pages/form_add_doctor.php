@@ -205,6 +205,7 @@
                                     class="form-control"
                                     id="inputLastName"
                                     type="text"
+                                    autocomplete="off"
                                     name="phic_license_no"
                                     placeholder="Enter PHIC License No"
                                     required />
@@ -231,7 +232,19 @@
                             </div>
                         </div>
                         <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputLastName">PRC License No</label>
+                                <input
+                                    value="<?= @$doctor->prc_license_no; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="text"
+                                    name="prc_no"
+                                    autocomplete="off"
+                                    placeholder="Enter PRC License No"
+                                    required />
+                            </div>
+                            <div class="col-md-4">
                                 <label class="small mb-1" for="inputLastName">PRC Registration Date</label>
                                 <input
                                     value="<?= @$doctor->prc_registration_date; ?>"
@@ -241,20 +254,7 @@
                                     name="prc_reg_date"
                                     required />
                             </div>
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputLastName">TIN #</label>
-                                <input
-                                    value="<?= @$doctor->tin_no; ?>"
-                                    class="form-control"
-                                    id="inputLastName"
-                                    type="text"
-                                    placeholder="Enter TIN #"
-                                    name="tin_no"
-                                    required />
-                            </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label class="small mb-1" for="inputLastName">PRC Expiry Date</label>
                                 <input
                                     value="<?= @$doctor->prc_expiry_date; ?>"
@@ -264,15 +264,31 @@
                                     name="prc_expiry_date"
                                     required />
                             </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLastName">TIN #</label>
+                                <input
+                                    value="<?= @$doctor->tin_no; ?>"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    type="text"
+                                    autocomplete="off"
+                                    placeholder="Enter TIN #"
+                                    name="tin_no"
+                                    required />
+                            </div>
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputLastName">Email Address</label>
                                 <input
-                                    value="<?= @$doctor->email_add; ?>"
+                                    value="<?= @$doctor->email_add ; ?>"
                                     class="form-control"
                                     id="inputLastName"
                                     type="email"
                                     placeholder="Enter Email Address"
                                     name="email_add"
+                                    autocomplete="off"
                                     required />
                             </div>
                         </div>
@@ -285,6 +301,7 @@
                                     id="inputLastName"
                                     type="text"
                                     name="s2_license_no"
+                                    autocomplete="off"
                                     placeholder="Enter PHIC License No"
                                     required />
                             </div>
